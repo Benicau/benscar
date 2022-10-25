@@ -1,7 +1,91 @@
+//Ajout police écriture
+@import url(https://fr.allfont.net/allfont.css?fonts=roboto-regular);
 
-$color : black;
+html, body
+{
+    height: 100%;
+    scroll-behavior: smooth;
+    
+}
+body{
+    font-family: 'Roboto Regular', arial;
+}
 
-body {
-    background-color: $color;
 
+//css footer
+.footer
+{
+    width: 100%;
+    background-color: #06283D;
+    color: white;
+    text-align: center;
+    font-size: 19px;
+    height: 47px;
+    line-height: 47px;
+
+
+}
+
+
+//css header
+.header {
+    width: 100%;
+    background-color: #06283D;
+    height: 76px;
+    p{
+        color: #47B5FF;
+        font-size: 32px;
+        font-weight: bold;
+        
+    }
+    ul{
+        display: flex;
+        li{
+            margin-right: 40px;
+            a{
+        text-decoration: none;
+        color: white;
+        font-size: 31px;
+        line-height: 76px;
+    }
+        }
+    }  
+}
+
+
+//css Home
+.home
+{
+    min-height: 90%;
+}
+h1{
+    margin-top: 25px;
+    color: #256d85;
+    font-weight: 800;
+    text-decoration: underline;
+}
+h2{
+    color : #47B5FF;
+    font-size: 20px;
+    margin-top: 25px;
+}
+p{
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+button{
+    height: 45px;
+    width: 100%;
+    color: white;
+    background-color: #06283D;
+    font-size: 20px;
+}
+
+h3{
+    color:white;
+    background-color: #F66B0E;
+    text-align: center;
+    height: 43px;
+    line-height: 43px;
+    margin-top: 40px;
 }
