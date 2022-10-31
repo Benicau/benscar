@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CarRepository::class)]
 class Car
@@ -16,14 +18,17 @@ class Car
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255)] 
+    #[Assert\Length(min: 10, max: 255, minMessage: "La marque doit faire plus de 10 caractères", maxMessage:"La marque ne doit pas faire plus de 255 caractères")]
     private ?string $marque = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(min: 10, max: 255, minMessage: "Le modele doit faire plus de 10 caractères", maxMessage:"Le modele ne doit pas faire plus de 255 caractères")]
     private ?string $modele = null;
+    
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
-    private ?string $prix = null;
+    #[ORM\Column]
+    private ?float $prix = null;
 
     #[ORM\Column]
     private ?int $nbrpoprio = null;
@@ -32,18 +37,26 @@ class Car
     private ?int $kilometres = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(min: 10, max: 255, minMessage: "La cylindree doit faire plus de 10 caractères", maxMessage:"Le cylindree ne doit pas faire plus de 255 caractères")]
     private ?string $cylindree = null;
+    
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(min: 10, max: 255, minMessage: "La puissance doit faire plus de 10 caractères", maxMessage:"La puissance ne doit pas faire plus de 255 caractères")]
     private ?string $puissance = null;
+    
 
     #[ORM\Column(length: 255)]
     private ?string $carburant = null;
+    #[Assert\NotBlank]
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(min: 10, max: 255, minMessage: "La transmission doit faire plus de 10 caractères", maxMessage:"La transmission ne doit pas faire plus de 255 caractères")]
     private ?string $transmition = null;
+   
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\Length(min: 100, minMessage: "La description doit faire plus de 100 caractères")]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
@@ -56,11 +69,16 @@ class Car
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\OneToMany(mappedBy: 'car', targetEntity: Image::class, orphanRemoval: true)]
+    #[Assert\Valid()]
     private Collection $images;
 
+    /**
+     * construct
+     */
     public function __construct()
     {
         $this->images = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -92,12 +110,12 @@ class Car
         return $this;
     }
 
-    public function getPrix(): ?string
+    public function getPrix(): ?float
     {
         return $this->prix;
     }
 
-    public function setPrix(string $prix): self
+    public function setPrix(float $prix): self
     {
         $this->prix = $prix;
 

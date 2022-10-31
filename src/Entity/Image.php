@@ -14,6 +14,7 @@ class Image
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Url(message: "Veuillez rendre une URL valide")]
     private ?string $lien = null;
 
     #[ORM\ManyToOne(inversedBy: 'images')]
