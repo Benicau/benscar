@@ -23,7 +23,7 @@ class AppFixtures extends Fixture
             $description = '<p>'.join('</p><p>', $faker->paragraphs(5)).'</p>';
             $carburantTab = ['essence','diesel','lpg','electrique'];
             $carburant = $carburantTab[rand(0,3)];
-            $transmissionTab = ['boite de vitesse manuel','boite de vitesse automatique','lpg','electrique'];
+            $transmissionTab = ['Manuelle','Automatique'];
             $transmission = $transmissionTab[rand(0,1)];
             $misecirculation = $faker->dateTimeThisDecade();
             
@@ -42,7 +42,8 @@ class AppFixtures extends Fixture
                 ->setTransmition($transmission)
                 ->setDescription($description)
                 ->setOptioncar($option)
-                ->setMiseEnCirculation($misecirculation)                
+                ->setMiseEnCirculation($misecirculation)   
+                ->setCoverImage('https://picsum.photos/400/290')             
                 ;
 
             $manager->persist($car);

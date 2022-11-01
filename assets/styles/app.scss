@@ -1,20 +1,20 @@
 //Ajout police écriture
 @import url(https://fr.allfont.net/allfont.css?fonts=roboto-regular);
 
-html, body
-{
+html,
+body {
     height: 100%;
     scroll-behavior: smooth;
-    
+
 }
-body{
+
+body {
     font-family: 'Roboto Regular', arial;
 }
 
 
 //css footer
-.footer
-{
+.footer {
     width: 100%;
     background-color: #06283D;
     color: white;
@@ -32,48 +32,55 @@ body{
     width: 100%;
     background-color: #06283D;
     height: 76px;
-    p{
+
+    p {
         color: #47B5FF;
         font-size: 32px;
         font-weight: bold;
-        
+
     }
-    ul{
+
+    ul {
         display: flex;
-        li{
+
+        li {
             margin-right: 40px;
-            a{
-        text-decoration: none;
-        color: white;
-        font-size: 31px;
-        line-height: 76px;
-    }
+
+            a {
+                text-decoration: none;
+                color: white;
+                font-size: 31px;
+                line-height: 76px;
+            }
         }
-    }  
+    }
 }
 
 
 //css Home
-.home
-{
+.home {
     min-height: 90%;
 }
-h1{
+
+h1 {
     margin-top: 25px;
     color: #256d85;
     font-weight: 800;
     text-decoration: underline;
 }
-h2{
-    color : #47B5FF;
+
+h2 {
+    color: #47B5FF;
     font-size: 20px;
     margin-top: 25px;
 }
-p{
+
+p {
     margin-top: 15px;
     margin-bottom: 20px;
 }
-button{
+
+button {
     height: 45px;
     width: 100%;
     color: white;
@@ -81,11 +88,85 @@ button{
     font-size: 20px;
 }
 
-h3{
-    color:white;
+h3 {
+    color: white;
     background-color: #F66B0E;
     text-align: center;
     height: 43px;
     line-height: 43px;
     margin-top: 40px;
+}
+
+//css item car
+.carPage {
+    .active{
+        .page-link{
+            background-color: #06283D;
+        }
+        
+    }
+    p {
+        margin: 0;
+
+        em {
+            text-align: right;
+        }
+    }
+
+    h1 {
+        background-color: #F66B0E;
+        color: white;
+        font-size: 20px;
+        text-decoration: none;
+        width: 450px;
+        height: 45px;
+        line-height: 45px;
+        text-align: center;
+    }
+
+    .itemCar {
+        width: 100%;
+        margin: auto;
+        background-color:lightgrey;
+
+        img {
+            width: 100%;
+            height: auto;
+        } 
+        a{
+                background-color: #F66B0E;
+                color: white;
+                width: 100%;
+                display: block;
+                text-align: center;
+                text-decoration: none;
+                height: 40px;
+                line-height: 40px;
+                
+                
+            }
+
+        .content {
+            position: relative;
+            
+            .nameCar {
+
+                p {
+                    color: #256d85;
+                    font-size: 20px;
+                }
+                span{
+                    font-weight: bold;
+                    position: absolute;
+                    right: 0;
+                }
+
+            }
+           
+
+        }
+
+    }
+
+
 }

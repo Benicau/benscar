@@ -62,6 +62,10 @@ class Car
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $optioncar = null;
 
+    #[ORM\Column(length: 255)]
+    #[Assert\Url(message: "Veuillez rendre une URL valide")]
+    private ?string $coverImage = null;
+
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $miseEnCirculation = null;
 
@@ -214,6 +218,18 @@ class Car
     public function setOptioncar(?string $optioncar): self
     {
         $this->optioncar = $optioncar;
+
+        return $this;
+    }
+
+    public function getCoverImage(): ?string
+    {
+        return $this->coverImage;
+    }
+
+    public function setCoverImage(string $coverImage): self
+    {
+        $this->coverImage = $coverImage;
 
         return $this;
     }
