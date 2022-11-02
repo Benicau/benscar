@@ -43,7 +43,7 @@ class AppFixtures extends Fixture
                 ->setDescription($description)
                 ->setOptioncar($option)
                 ->setMiseEnCirculation($misecirculation)   
-                ->setCoverImage('https://picsum.photos/400/290')             
+                ->setCoverImage('https://picsum.photos/350/180')             
                 ;
 
             $manager->persist($car);

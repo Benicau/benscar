@@ -4,43 +4,39 @@
 
 {% block body %}
 <div class="carPage">
-<div class="container">  
- 
-  <h1 class="mt-5">Toutes nos voitures en stock</h1>
-  <div class="count">
-  {% if not cars.items is same as ([]) %}
-  <em>Il y a {{ cars.getTotalItemCount }} voitures à vendre</em>
-    
-</div>
-  
-      <div class="row">
-        {% for car in cars %}   
-        <div class="col-lg-4 col-md-12">  
-            <div class="itemCar my-4"> 
-                <div class="image text-center">
-                    <img src="{{car.coverImage}}" class="starsimg">
-                </div>
-                <div class="content m-1">
-                    <div class="nameCar">
-                        <p>{{car.marque|upper}} {{car.modele}}<span>{{car.prix}} €</span></p>
+    <div class="container">
+        <h1 class="mt-5">Toutes nos voitures en stock</h1>
+        <div class="count">
+            {% if not cars.items is same as ([]) %}
+            <em>Il y a {{ cars.getTotalItemCount }} voitures à vendre</em>
+        </div>
+        <div class="row">
+            {% for car in cars %}
+            <div class="col-lg-4 col-md-12">
+                <div class="itemCar my-4">
+                    <div class="image text-center">
+                        <img src="{{car.coverImage}}" class="starsimg">
                     </div>
-                    
-                    <p>{{car.cylindree}}</p>
-                    <p class="text-center">{{car.MiseEnCirculation|date("Y")}} | {{car.carburant}} | {{car.kilometres}} km</p>
-                    <p class="text-center">{{car.transmition}}</p>  
-                    
+                    <div class="content mx-3">
+                        <div class="nameCar">
+                            <p>{{car.marque|upper}} {{car.modele}}<span>{{car.prix}} €</span></p>
+                        </div>
+                        <p>{{car.cylindree}}</p>
+                        <p class="text-center">{{car.MiseEnCirculation|date("Y")}} | {{car.carburant}} |
+                            {{car.kilometres}} km</p>
+                        <p class="text-center">{{car.transmition}}</p>
+                    </div>
+                    <a href="#">Voir cette voiture</a>
                 </div>
-                <a href="#">Voir cette voiture</a>  
-            </div>   
-        </div>       
-        {% endfor %}
+            </div>
+            {% endfor %}
         </div>
         <div class="navigation d-flex justify-content-center">
-    {{ knp_pagination_render(cars) }}
-</div>
-{% else %}
-<em>Il y a pas de voiture à vendre</em>
-{% endif %}
+            {{ knp_pagination_render(cars) }}
+        </div>
+        {% else %}
+        <em>Il y a pas de voiture à vendre</em>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

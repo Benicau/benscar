@@ -21,8 +21,8 @@
                     vente et Pass car garantie sur tout nos véhicules.</p>
             </div>
             <div class="row">
-                <div class="col-4 offset-4 text-center"><button class="text-center" href="">Nos voitures en
-                        stock</button>
+                <div class="col-4 offset-4 text-center linkHome"><a class="text-center mt-3" href="{{ path('app_car') }}">Nos voitures en
+                        stock</a>
                 </div>
             </div>
             <div class="row">
@@ -31,7 +31,27 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            {% for car in cars %}
+            <div class="col-lg-4 col-md-12">
+                <div class="itemCar my-4">
+                    <div class="image text-center">
+                        <img src="{{car.coverImage}}" class="starsimg">
+                    </div>
+                    <div class="content mx-3">
+                        <div class="nameCar">
+                            <p>{{car.marque|upper}} {{car.modele}}<span>{{car.prix}} €</span></p>
+                        </div>
+                        <p>{{car.cylindree}}</p>
+                        <p class="text-center">{{car.MiseEnCirculation|date("Y")}} | {{car.carburant}} |
+                            {{car.kilometres}} km</p>
+                        <p class="text-center">{{car.transmition}}</p>
+                    </div>
+                    <a href="#">Voir cette voiture</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 </div>
-
 {% endblock %}

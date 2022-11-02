@@ -49,7 +49,7 @@ body {
             a {
                 text-decoration: none;
                 color: white;
-                font-size: 31px;
+                font-size: 20px;
                 line-height: 76px;
             }
         }
@@ -80,13 +80,20 @@ p {
     margin-bottom: 20px;
 }
 
-button {
-    height: 45px;
-    width: 100%;
-    color: white;
-    background-color: #06283D;
-    font-size: 20px;
-}
+    .linkHome {
+
+        a {
+            padding: 10px;
+            width: 100%;
+            color: white;
+            background-color: #06283D;
+            font-size: 20px;
+            text-decoration: none;
+            display: block;
+        }
+    }
+
+
 
 h3 {
     color: white;
@@ -98,13 +105,15 @@ h3 {
 }
 
 //css item car
-.carPage {
-    .active{
-        .page-link{
+.carPage,
+.home {
+    .active {
+        .page-link {
             background-color: #06283D;
         }
-        
+
     }
+
     p {
         margin: 0;
 
@@ -127,42 +136,44 @@ h3 {
     .itemCar {
         width: 100%;
         margin: auto;
-        background-color:lightgrey;
+        background-color: lightgrey;
 
         img {
             width: 100%;
             height: auto;
-        } 
-        a{
-                background-color: #F66B0E;
-                color: white;
-                width: 100%;
-                display: block;
-                text-align: center;
-                text-decoration: none;
-                height: 40px;
-                line-height: 40px;
-                
-                
-            }
+        }
+
+        a {
+            background-color: #F66B0E;
+            color: white;
+            width: 100%;
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            height: 40px;
+            line-height: 40px;
+
+
+        }
 
         .content {
             position: relative;
-            
+
             .nameCar {
 
                 p {
                     color: #256d85;
                     font-size: 20px;
                 }
-                span{
+
+                span {
                     font-weight: bold;
                     position: absolute;
                     right: 0;
                 }
 
             }
-           
+
 
         }
 
