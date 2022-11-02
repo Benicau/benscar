@@ -60,14 +60,14 @@ body {
 //css Home
 .home {
     min-height: 90%;
-}
-
-h1 {
+    h1{
     margin-top: 25px;
     color: #256d85;
     font-weight: 800;
     text-decoration: underline;
+    }
 }
+
 
 h2 {
     color: #47B5FF;
@@ -104,6 +104,19 @@ h3 {
     margin-top: 40px;
 }
 
+.carPage{
+    h1{
+        background-color: #F66B0E;
+        color: white;
+        font-size: 20px;
+        text-decoration: none;
+        width: 450px;
+        height: 45px;
+        line-height: 45px;
+        text-align: center;
+    }
+}
+
 //css item car
 .carPage,
 .home {
@@ -122,16 +135,6 @@ h3 {
         }
     }
 
-    h1 {
-        background-color: #F66B0E;
-        color: white;
-        font-size: 20px;
-        text-decoration: none;
-        width: 450px;
-        height: 45px;
-        line-height: 45px;
-        text-align: center;
-    }
 
     .itemCar {
         width: 100%;

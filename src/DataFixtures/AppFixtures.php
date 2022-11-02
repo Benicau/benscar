@@ -4,13 +4,17 @@ namespace App\DataFixtures;
 
 use Faker\Factory;
 use App\Entity\Car;
-use App\Entity\Image;
+use App\Entity\User;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
+
+
+
+
    
     public function load(ObjectManager $manager): void
     {
@@ -57,6 +61,21 @@ class AppFixtures extends Fixture
               //  $manager->persist($image);    
            // }
 
+        }
+
+        //users
+        for ($i=0; $i<10; $i++) { 
+            $user = new User();
+            $user->setFullName($faker->name())
+                ->setPseudo(mt_rand(0,1) === 1 ? $faker->firstname() : null)
+                ->setEmail($faker->email())
+                ->setRoles(['ROLE_USER'])
+                ->setlPlainPassword('password')
+                ;
+          
+            
+            
+        $manager->persist($user);
         }
 
 
