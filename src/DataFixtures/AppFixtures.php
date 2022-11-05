@@ -13,7 +13,12 @@ class AppFixtures extends Fixture
 {
 
 
+    private UserPasswordHasherInterface $hasher;
 
+    public function __construct(UserPasswordHasherInterface $hasher) 
+    {
+        $this->hasher = $hasher;
+    }
 
    
     public function load(ObjectManager $manager): void
@@ -69,16 +74,17 @@ class AppFixtures extends Fixture
             $user->setFullName($faker->name())
                 ->setPseudo(mt_rand(0,1) === 1 ? $faker->firstname() : null)
                 ->setEmail($faker->email())
-                ->setRoles(['ROLE_USER'])
-                ->setlPlainPassword('password')
-                ;
-          
-            
-            
-        $manager->persist($user);
+                ->setRoles(['ROLE_USER']);
+            $hashPassword = $this->hasher->hashPassword(
+                $user,
+                'password'
+            );            
+            $user->setPassword($hashPassword);
+            $manager->persist($user);
         }
+        
 
-
+ 
         $manager->flush();
     }
 }
