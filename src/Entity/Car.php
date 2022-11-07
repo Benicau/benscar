@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\CarRepository;
+use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -11,6 +12,9 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CarRepository::class)]
+#[ORM\HasLifecycleCallbacks]
+#[UniqueEntity(fields:['id'], message:"Une autre annonce à déjà été postée qui a le même numéro")]
+
 class Car
 {
     #[ORM\Id]
@@ -19,14 +23,16 @@ class Car
     private ?int $id = null;
 
     #[ORM\Column(length: 255)] 
-    #[Assert\Length(min: 10, max: 255, minMessage: "La marque doit faire plus de 10 caractères", maxMessage:"La marque ne doit pas faire plus de 255 caractères")]
+    #[Assert\Length(min:3, max: 255, minMessage: "La marque doit faire plus de 3 caractères", maxMessage:"La marque ne doit pas faire plus de 255 caractères")]
     private ?string $marque = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\Length(min: 10, max: 255, minMessage: "Le modele doit faire plus de 10 caractères", maxMessage:"Le modele ne doit pas faire plus de 255 caractères")]
+    #[Assert\Length(min: 3, max: 255, minMessage: "Le modele doit faire plus de 2 caractères", maxMessage:"Le modele ne doit pas faire plus de 255 caractères")]
     private ?string $modele = null;
-    
 
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+    
     #[ORM\Column]
     private ?float $prix = null;
 
@@ -37,12 +43,12 @@ class Car
     private ?int $kilometres = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\Length(min: 10, max: 255, minMessage: "La cylindree doit faire plus de 10 caractères", maxMessage:"Le cylindree ne doit pas faire plus de 255 caractères")]
+    #[Assert\Length(min: 3, max: 255, minMessage: "La cylindree doit faire plus de 3 caractères", maxMessage:"Le cylindree ne doit pas faire plus de 255 caractères")]
     private ?string $cylindree = null;
     
 
     #[ORM\Column(length: 255)]
-    #[Assert\Length(min: 10, max: 255, minMessage: "La puissance doit faire plus de 10 caractères", maxMessage:"La puissance ne doit pas faire plus de 255 caractères")]
+    #[Assert\Length(min: 3, max: 255, minMessage: "La puissance doit faire plus de 3 caractères", maxMessage:"La puissance ne doit pas faire plus de 255 caractères")]
     private ?string $puissance = null;
     
 
@@ -51,7 +57,7 @@ class Car
     #[Assert\NotBlank]
 
     #[ORM\Column(length: 255)]
-    #[Assert\Length(min: 10, max: 255, minMessage: "La transmission doit faire plus de 10 caractères", maxMessage:"La transmission ne doit pas faire plus de 255 caractères")]
+    #[Assert\Length(min: 3, max: 255, minMessage: "La transmission doit faire plus de 3 caractères", maxMessage:"La transmission ne doit pas faire plus de 255 caractères")]
     private ?string $transmition = null;
    
 
@@ -76,13 +82,25 @@ class Car
     #[Assert\Valid()]
     private Collection $images;
 
-    /**
-     * construct
-     */
-    public function __construct()
+    #[ORM\ManyToOne(inversedBy: 'cars')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $author = null;
+
+        public function __construct()
     {
         $this->images = new ArrayCollection();
         $this->createdAt = new \DateTimeImmutable();
+    }
+  
+
+    #[ORM\PrePersist]
+    #[ORM\PreUpdate]
+    public function initializeSlug(): void
+    {
+        if(empty($this->slug)){
+            $slugify = new Slugify();
+            $this->slug = $slugify->slugify($this->marque.' '.$this->modele.' '.uniqid('voiture='));
+        }
     }
 
     public function getId(): ?int
@@ -102,6 +120,7 @@ class Car
         return $this;
     }
 
+   
     public function getModele(): ?string
     {
         return $this->modele;
@@ -110,6 +129,18 @@ class Car
     public function setModele(string $modele): self
     {
         $this->modele = $modele;
+
+        return $this;
+    }
+
+     public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }
@@ -203,7 +234,7 @@ class Car
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
@@ -284,6 +315,17 @@ class Car
                 $image->setCar(null);
             }
         }
+
+        return $this;
+    }
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }

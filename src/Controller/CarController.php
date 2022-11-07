@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Car;
 use App\Repository\CarRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,5 +32,24 @@ class CarController extends AbstractController
             'cars'=>$cars     
         ]);
     }
+
+
+
+
+
+    /**
+     * Permet d'afficher une annonce via son slug
+     */
+    #[Route('/ads/{slug}', name:'cars_show')]
+    public function show(string $slug, Car $car):Response
+    {
+        dump($car);
+
+        return $this->render('pages/car/show.html.twig',[
+            'car' => $car
+        ]);
+    }
+
+
 }
 

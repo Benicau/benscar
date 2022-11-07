@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use Faker\Factory;
 use App\Entity\Car;
 use App\Entity\User;
+use App\Entity\Image;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -13,28 +14,54 @@ class AppFixtures extends Fixture
 {
 
 
-    private UserPasswordHasherInterface $hasher;
+    private $passwordHasher;
 
-    public function __construct(UserPasswordHasherInterface $hasher) 
+    public function __construct(UserPasswordHasherInterface $passwordHasher)
     {
-        $this->hasher = $hasher;
+        $this->passwordHasher = $passwordHasher;
     }
 
    
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create('fr_FR');
-      
+
+
+         // gestion des utilisateurs
+         $users = []; // init un tableau pour récup les user pour les Cars
+        
+
+        //users
+        for ($i=0; $i<10; $i++) { 
+            $user = new User();
+            $hash = $this->passwordHasher->hashPassword($user,'password');
+
+            $user->setFirstName($faker->firstName())
+                ->setLastName($faker->lastName())
+                ->setEmail($faker->email())
+                ->setPassword($hash)
+                ->setPseudo($faker->word())   
+                ;
+
+            $manager->persist($user);
+            $users[] = $user;    
+        }
+
+
+
         for($i = 1; $i <= 30; $i++)
         {
             $car = new Car();
             $option = $faker->paragraph(2);
-            $description = '<p>'.join('</p><p>', $faker->paragraphs(5)).'</p>';
+            $description = join('', $faker->paragraphs(5));
             $carburantTab = ['essence','diesel','lpg','electrique'];
             $carburant = $carburantTab[rand(0,3)];
             $transmissionTab = ['Manuelle','Automatique'];
             $transmission = $transmissionTab[rand(0,1)];
             $misecirculation = $faker->dateTimeThisDecade();
+
+             // liaison avec user
+             $user = $users[rand(0, count($users)-1)];
             
             
 
@@ -52,39 +79,25 @@ class AppFixtures extends Fixture
                 ->setDescription($description)
                 ->setOptioncar($option)
                 ->setMiseEnCirculation($misecirculation)   
-                ->setCoverImage('https://picsum.photos/350/180')             
+                ->setCoverImage('https://picsum.photos/350/180')   
+                ->setAuthor($user)          
                 ;
 
             $manager->persist($car);
 
+            
             // gestion de l'image de l'annonce
-         //   for($j=1; $j<= rand(2,5); $j++)
-          //  {
-           //     $image = new Image();
-            //    $image->setLien('https://picsum.photos/200/200')
-             //       ->setCar(rand(1,5));
-              //  $manager->persist($image);    
-           // }
+           for($j=1; $j<= rand(2,5); $j++)
+            {
+                $image = new Image();
+                $image->setUrl('https://picsum.photos/450/250')
+                ->setCaption($faker->sentence())
+                ->setCar($car);
+                $manager->persist($image);    
+            }
 
         }
 
-        //users
-        for ($i=0; $i<10; $i++) { 
-            $user = new User();
-            $user->setFullName($faker->name())
-                ->setPseudo(mt_rand(0,1) === 1 ? $faker->firstname() : null)
-                ->setEmail($faker->email())
-                ->setRoles(['ROLE_USER']);
-            $hashPassword = $this->hasher->hashPassword(
-                $user,
-                'password'
-            );            
-            $user->setPassword($hashPassword);
-            $manager->persist($user);
-        }
-        
-
- 
         $manager->flush();
     }
 }

@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ImageRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ImageRepository::class)]
 class Image
@@ -15,7 +16,11 @@ class Image
 
     #[ORM\Column(length: 255)]
     #[Assert\Url(message: "Veuillez rendre une URL valide")]
-    private ?string $lien = null;
+    private ?string $url = null;
+
+    #[ORM\Column(length: 255)]
+    #[Assert\Length(min:10, max:255, minMessage:"Le titre de l'image doit faire plus de 10 caractères", maxMessage:"Le titre de l'image ne doit pas faire plus de 255 caractères")]
+    private ?string $caption = null;
 
     #[ORM\ManyToOne(inversedBy: 'images')]
     #[ORM\JoinColumn(nullable: false)]
@@ -26,14 +31,26 @@ class Image
         return $this->id;
     }
 
-    public function getLien(): ?string
+    public function getUrl(): ?string
     {
-        return $this->lien;
+        return $this->url;
     }
 
-    public function setLien(string $lien): self
+    public function setUrl(string $url): self
     {
-        $this->lien = $lien;
+        $this->url = $url;
+
+        return $this;
+    }
+
+    public function getCaption(): ?string
+    {
+        return $this->caption;
+    }
+
+    public function setCaption(string $caption): self
+    {
+        $this->caption = $caption;
 
         return $this;
     }

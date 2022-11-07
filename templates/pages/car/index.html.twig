@@ -12,6 +12,7 @@
         </div>
         <div class="row">
             {% for car in cars %}
+              {% set url = path('cars_show', {'slug':car.slug}) %}
             <div class="col-lg-4 col-md-12">
                 <div class="itemCar my-4">
                     <div class="image text-center">
@@ -26,7 +27,7 @@
                             {{car.kilometres}} km</p>
                         <p class="text-center">{{car.transmition}}</p>
                     </div>
-                    <a href="#">Voir cette voiture</a>
+                    <a href="{{url}}">Voir cette voiture</a>
                 </div>
             </div>
             {% endfor %}
