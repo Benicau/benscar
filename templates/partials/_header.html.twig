@@ -4,13 +4,24 @@
             <div class="col-3">
                 <p>Ben'sCar</p>
             </div>
-            <nav class="col-9">
-                <nav>
-                    <ul>
-                        <li><a href="{{path('homepage')}}">Accueil</a></li>
-                        <li><a href="{{ path('app_car') }}">Nos voiture en stock</a></li>
-                    </ul>
-                </nav>
+            <nav class="col-6">    
+                <ul> 
+                    <li><a href="{{path('homepage')}}">Accueil</a></li>
+                    <li><a href="{{ path('app_car') }}">Nos voiture en stock</a></li>
+                </ul>
+            </nav>
+            <nav class="col-3">
+            <ul class="menuUser unselectable justify-content-end">
+                {% if app.user %}
+                <li class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="accountDropdownLink">Bienvenue {{app.user.FirstName}} {{app.user.LastName}}</li>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="accountDropdownLink">
+                    <a href="{{path('admin_car')}}" class="dropdown-item">Administration</a>
+                    <a href="{{path('security.logout')}}" class="dropdown-item">Déconnexion</a>
+                </div>
+                {% else %}
+                <li><a href="{{path('security.login')}}">Connexion</a></li>    
+                {% endif %}   
+                </ul>
             </nav>
         </div>
     </div>

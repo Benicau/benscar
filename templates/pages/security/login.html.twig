@@ -1,25 +1,29 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}Ben's Car - Connexion{% endblock %}
-
 {% block body %}
-<div class="container">
-    <h1>Formulaire de connection</h1>
-
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-    
-    <form action="{{ path('security.login')}}" method="post">
-        <div class="form-group">
-            <label for="username" class="form-label mt4">Adresse email</label>
-            <input type="email" class="form-control" id="username" name="_username" placeholder="exemple@benscar.be" value="{{ last_username}}">
+<div class="connexion">
+    <div class="container">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <h1>Formulaire de connection</h1>
+                {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+                <form action="{{ path('security.login')}}" method="post">
+                    <div class="form-group">
+                        <label for="username" class="form-label mt4">Adresse email</label>
+                        <input type="email" class="form-control" id="username" name="_username"
+                            placeholder="exemple@benscar.be" value="{{last_username}}">
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="password" class="form-label mt4">Mot de passe</label>
+                        <input type="password" class="form-control" id="password" name="_password"
+                            placeholder="********">
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-2">Se connecter</button>
+                </form>
+            </div>
         </div>
-        <div class="form-group mt-3">
-            <label for="password" class="form-label mt4">Mot de passe</label>
-            <input type="password" class="form-control" id="password" name="_password" placeholder="********">
-        </div>
-        <button type="submit" class="btn btn-primary mt-2">Se connecter</button>
-    </form>
+    </div>
 </div>
 {% endblock %}

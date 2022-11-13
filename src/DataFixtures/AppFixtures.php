@@ -40,7 +40,8 @@ class AppFixtures extends Fixture
                 ->setLastName($faker->lastName())
                 ->setEmail($faker->email())
                 ->setPassword($hash)
-                ->setPseudo($faker->word())   
+                ->setPseudo($faker->word())  
+                ->setRoles(['ROLE_ADMIN']) 
                 ;
 
             $manager->persist($user);
@@ -52,8 +53,8 @@ class AppFixtures extends Fixture
         for($i = 1; $i <= 30; $i++)
         {
             $car = new Car();
-            $option = $faker->paragraph(2);
-            $description = join('', $faker->paragraphs(5));
+            $option ='<p>'.join('</p><p>', $faker->paragraphs(2)).'</p>';
+            $description =  '<p>'.join('</p><p>', $faker->paragraphs(5)).'</p>';
             $carburantTab = ['essence','diesel','lpg','electrique'];
             $carburant = $carburantTab[rand(0,3)];
             $transmissionTab = ['Manuelle','Automatique'];

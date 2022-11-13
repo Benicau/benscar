@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+{% block title %}Ben's Car - Administration{% endblock %}
+
+{% block body %}
+<div class="container">
+<h1 class="mt-2 text-center">Ben's car admin</h1>
+<a href="{{ path('new_car') }}" class="btn btn-warning my-2">Nouvelle Voiture</a>
+{% for message in app.flashes('success') %}
+            <div class="alert alert-success mt-2">
+                {{ message }}
+            </div>
+        {% endfor %}
+<div class="count py-2">
+<em>Il y a {{cars.getTotalItemCount}} voitures a vendre</em>
+</div>
+
+
+<table class="table mt-2">
+  <thead class="thead-dark">
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Marque</th>
+        <th scope="col">Modele</th>
+        <th scope="col">Prix</th>
+        <th scope="col">Image couverture</th>
+        <th scope="col">Date de création</th>
+        <th scope="col">Auteur</th>
+        <th scope="col">Modifier</th>
+        <th scope="col">Supprimer</th>
+    </tr>
+  </thead>
+ <tbody>
+{% for car in cars %}
+    <tr>
+      <th>{{car.id}}</th>
+      <td>{{car.marque}}</td>
+      <td>{{car.modele}}</td>
+      <td>{{car.prix}} €</td>
+      <td><img src="{{car.coverImage}}" alt="{{car.marque}} {{car.modele}}"></td>
+      <td>{{car.createdAt | format_datetime('full', 'short', locale='fr')}}</td>
+      <td>{{car.author.FirstName}} {{car.author.LastName}}</td>
+      <td><a href="{{path('admin_car',{'slug': car.slug})}}" class="btn btn-warning mx-2">Modifier</a></td>
+      <td><a href="{{path('car_delete',{'slug': car.slug})}}" class="btn btn-danger mx-2">Supprimer</a></td>
+    </tr>
+{% endfor %}
+</tbody>
+</table>
+ <div class="navigation d-flex justify-content-center">
+            {{ knp_pagination_render(cars) }}
+        </div>
+</div>
+
+{% endblock %}
