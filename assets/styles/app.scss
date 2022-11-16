@@ -134,7 +134,7 @@ h3 {
 }
 
 //css connexion
-.connexion {
+.connexion, .admin{
     min-height: 88vh;
 }
 
@@ -216,4 +216,9 @@ td{
 &:hover{
     background-color: antiquewhite;
 }
+}
+
+textarea{
+    height: 120px;
+    resize: none;
 }

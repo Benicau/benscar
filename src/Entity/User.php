@@ -197,7 +197,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->cars;
     }
 
-    public function addAd(Car $car): self
+    public function addCar(Car $car): self
     {
         if (!$this->cars->contains($car)) {
             $this->cars->add($car);
@@ -207,7 +207,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeAd(Car $car): self
+    public function removeCar(Car $car): self
     {
         if ($this->cars->removeElement($car)) {
             // set the owning side to null (unless already changed)

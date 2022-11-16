@@ -69,7 +69,8 @@ class Car
     private ?string $optioncar = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\Url(message: "Veuillez rendre une URL valide")]
+    #[Assert\Image(mimeTypes:["image/png","image/jpeg","image/jpg","image/gif"], mimeTypesMessage:"Vous devez upload un fichier jpg, jpeg, png ou gif")]
+    #[Assert\File(maxSize:"1024k", maxSizeMessage:"La taille du fichier est trop grande")]
     private ?string $coverImage = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
@@ -103,6 +104,8 @@ class Car
         }
     }
 
+    #[ORM\PrePersist]
+    #[ORM\PreUpdate]
     public function getId(): ?int
     {
         return $this->id;
@@ -318,6 +321,9 @@ class Car
 
         return $this;
     }
+
+
+    
     public function getAuthor(): ?User
     {
         return $this->author;

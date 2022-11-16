@@ -2,6 +2,12 @@
 
 {% block title %}Création d'une nouvelle voiture{% endblock %}
 
+{% block stylesheets %}
+{{ parent() }}
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/css/datepicker-bs4.min.css">
+{% endblock %}
+
 {% form_theme form 'bootstrap_5_layout.html.twig' %}
 
 {% block body %}
@@ -18,3 +24,14 @@
     </div>
 {% endblock %}
 
+{% block javascripts %}
+<script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/js/datepicker.min.js"></script>
+<script>
+const miseEnCirculation = document.querySelector('#car_miseEnCirculation')
+console.log(miseEnCirculation)
+
+const datePicker = new Datepicker(miseEnCirculation,{
+            format: 'dd/mm/yyyy',
+            maxDate: new Date()
+        })
+</script>{% endblock %}

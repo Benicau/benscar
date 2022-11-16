@@ -2,7 +2,7 @@
 {% block title %}Ben's Car - Administration{% endblock %}
 
 {% block body %}
-<div class="container">
+<div class="container admin">
 <h1 class="mt-2 text-center">Ben's car admin</h1>
 <a href="{{ path('new_car') }}" class="btn btn-warning my-2">Nouvelle Voiture</a>
 {% for message in app.flashes('success') %}
