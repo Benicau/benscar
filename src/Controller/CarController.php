@@ -78,26 +78,12 @@ class CarController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid())
         {
-            
-
-
-
-
-
+            // add author on new car
+            $cars->setAuthor($this->container->get('security.token_storage')->getToken()->getUser()); 
            // gestion de mon image
            $file = $form['coverImage']->getData();
            if(!empty($file))
            {
-
-               
-
-
-
-
-
-
-
-
                $originalFilename = pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME);
                $safeFilename = transliterator_transliterate('Any-Latin;Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
                $newFilename = $safeFilename."-".uniqid().".".$file->guessExtension();

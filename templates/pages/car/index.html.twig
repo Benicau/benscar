@@ -16,7 +16,11 @@
             <div class="col-lg-4 col-md-12">
                 <div class="itemCar my-4">
                     <div class="image text-center">
+                        {% if car.coverImage != "https://picsum.photos/350/180" %}
+                        <img src="/uploads/{{car.coverImage}}" class="starsimg">
+                    {% else %}
                         <img src="{{car.coverImage}}" class="starsimg">
+                    {% endif %}
                     </div>
                     <div class="content mx-3">
                         <div class="nameCar">

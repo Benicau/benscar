@@ -36,7 +36,11 @@
       <td>{{car.marque}}</td>
       <td>{{car.modele}}</td>
       <td>{{car.prix}} €</td>
+      {% if car.coverImage != "https://picsum.photos/350/180" %}
+      <td><img src="/uploads/{{car.coverImage}}" alt="{{car.marque}} {{car.modele}}"></td>
+      {% else %}
       <td><img src="{{car.coverImage}}" alt="{{car.marque}} {{car.modele}}"></td>
+      {% endif %}
       <td>{{car.createdAt | format_datetime('full', 'short', locale='fr')}}</td>
       <td>{{car.author.FirstName}} {{car.author.LastName}}</td>
       <td><a href="{{path('admin_car',{'slug': car.slug})}}" class="btn btn-warning mx-2">Modifier</a></td>

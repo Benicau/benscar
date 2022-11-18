@@ -159,11 +159,17 @@ h3 {
         width: 100%;
         margin: auto;
         background-color: lightgrey;
-
-        img {
+        .image{
             width: 100%;
-            height: auto;
+            height: 200px;
+         img {
+            width: 100%;
+            height: 100%;
+            }
+
         }
+
+       
 
         a {
             background-color: #F66B0E;
@@ -221,4 +227,44 @@ td{
 textarea{
     height: 120px;
     resize: none;
+}
+
+//page car
+.carSeul{
+    h3{
+        color: #F66B0E;
+        background-color: transparent;
+        text-decoration: underline;
+    }
+    h4{
+        color: #06283D;
+        font-size: 22px;
+        font-weight: bold;
+        margin-top: 18px;
+        height: 50px;
+        vertical-align: auto;
+    }
+    i{ 
+        margin-top: 22px;
+        color: #F66B0E;
+        font-size: 60px;
+    }
+    p{
+        line-height: 20px;
+    }
+   h2{
+    font-size: 35px;
+    color: #06283D;
+    line-height: 35px;
+   }
+   .titre{
+    p{
+        font-size: 25px;
+    }
+   }
+   .prix{
+    color: #F66B0E;
+    font-size: 45px;
+    text-align: end;
+   }
 }

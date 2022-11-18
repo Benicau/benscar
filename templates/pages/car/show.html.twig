@@ -3,70 +3,105 @@
 {% block title %}Annonce: {{car.marque}} {{car.modele}}{% endblock %}
 
 {% block body %}
-    <div class="annonce-title" style="background-image: url('{{car.coverImage}}');">
-        <div class="container">
-           
+<div class="annonce-title" style="background-image: url('{{car.coverImage}}');">
+    <div class="container">
+
+    </div>
+</div>
+<div class="container carSeul">
+    <div class="row">
+        <div class="col-md-5 offset-3 mb-3 mt-4">
+            <div class="bd-example mt-5">
+                <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+                    <div class="carousel-indicators">
+                        {% for image in car.images %}
+                        <button type="button" data-bs-target="#carouselExampleCaptions"
+                            data-bs-slide-to="{{loop.index0}}" {% if loop.first %} class="active" aria-current="true"
+                            {% endif %} aria-label="Slide {{loop.index}}"></button>
+                        {% endfor %}
+
+                    </div>
+                    <div class="carousel-inner">
+                        {% for image in car.images %}
+                        <div class="carousel-item {% if loop.first %}active{% endif %}">
+                            <img src="{{image.url}}" class="d-block w-100" alt="image de {{car.marque}}">
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+
         </div>
     </div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-5 offset-3 mb-3 mt-4">
-                
-
-                <div class="bd-example">
-                    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
-                        <div class="carousel-indicators">
-                         {% for image in car.images %}
-                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{loop.index0}}" {% if loop.first %} class="active" aria-current="true" {% endif %} aria-label="Slide {{loop.index}}"></button>
-                        {% endfor %} 
-                           
-                        </div>
-                        <div class="carousel-inner">
-                            {% for image in car.images %}
-                                <div class="carousel-item {% if loop.first %}active{% endif %}">
-                                    <img src="{{image.url}}" class="d-block w-100" alt="image de {{car.marque}}">
-                                </div>
-                            {% endfor %}
-                           
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-                </div>
-
+    <div class="row">
+        <div class="col-6">
+            <div class="titre">
+         
+                <h2>{{car.marque | capitalize}} {{car.modele | capitalize}}</h2>
+                <p>{{car.cylindree}}</p>
             </div>
         </div>
-        <div class="row">
-            <div class="col-6">
-                <div class="titre">
-                <h2>{{car.marque}} {{car.modele}}</h2>
-                <p>{{car.cylindree}}</p>
-                </div>
-            </div> 
-            <div class="col-6">
-                <div class="prix">
+        <div class="col-6">
+            <div class="prix">
                 <strong>{{car.prix}} €</strong>
-                </div>
-            </div> 
+            </div>
         </div>
-        <h3>Information de base</h3>
-        <h3>Information de la voiture</h3>
-        <p class="text-center">{{car.description}}</p>
-        <h3>Option de la voiture</h3>
-        <p class="text-center">{{car.optioncar | raw}}</p>
     </div>
+    <h3>Information de base</h3>
+    <div class="row info">
+        <div class="col-2 text-center">
+           <i class="fa-solid fa-shop"></i>
+            <h4>Première immatriculation</h4>
+            <p>{{car.MiseEnCirculation | date("m.Y")}}</p>
+        </div>
+        <div class="col-2 text-center">
+        <i class="fa-solid fa-road"></i>
+            <h4>Kilomètrage</h4>
+            <p>{{car.Kilometres }}</p>
+        </div>
+        <div class="col-2 text-center">
+        <i class="fa-solid fa-seedling"></i>
+            <h4>Carburant</h4>
+            <p>{{car.Carburant}}</p>
+        </div>
+        <div class="col-2 text-center">
+        <i class="fa-solid fa-code-branch"></i>
+            <h4>Transmission</h4>
+            <p>{{car.transmition}}</p>
+        </div>
+        <div class="col-2 text-center">
+        <i class="fa-solid fa-dumbbell"></i>
+            <h4>Puissance</h4>
+            <p>{{car.Puissance}}</p>
+        </div>
+        <div class="col-2 text-center">
+            <i class="fa-solid fa-users"></i>
+            <h4>Nombre d'anciens propriétaires</h4>
+            <p>{{car.Nbrpoprio}}</p>
+        </div>
+    </div>
+
+    <h3>Information de la voiture</h3>
+    <div class="text-center description">{{car.description | raw}}</div>
+    <h3>Option de la voiture</h3>
+    <div class="text-center mb-5">{{car.optioncar | raw}}</div>
+</div>
 
 {% endblock %}
 
 {% block javascripts %}
-    {# pour récup ce qu'il y a dans le parent #}
-    {{parent()}}
+{# pour récup ce qu'il y a dans le parent #}
+{{parent()}}
 
 {% endblock %}
