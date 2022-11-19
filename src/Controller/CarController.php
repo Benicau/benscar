@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Car;
+use App\Entity\Image;
 use App\Form\CarType;
 use Doctrine\ORM\EntityManager;
 use App\Repository\CarRepository;
@@ -102,6 +103,19 @@ class CarController extends AbstractController
                }
                $cars->setCoverImage($newFilename);
            }
+           $images = $form->get('images')->getData();
+            foreach($images as $image){
+                $file = md5(uniqid()) . '.' .$image->guessExtension();
+                $image->move(
+                    $this->getParameter('uploads_directory'),
+                    $file
+                );
+
+                $img = new Image();
+                $img->setUrl($file);
+                $img->setCaption('Hello World helloo');
+                $cars->addImage($img);
+            }
            $manager->persist($cars);
             $manager->flush();
 
@@ -150,6 +164,19 @@ class CarController extends AbstractController
                     return $e->getMessage();
                 }
                 $cars->setCoverImage($newFilename);
+            }
+            $images = $form->get('images')->getData();
+            foreach($images as $image){
+                $file = md5(uniqid()) . '.' .$image->guessExtension();
+                $image->move(
+                    $this->getParameter('uploads_directory'),
+                    $file
+                );
+
+                $img = new Image();
+                $img->setUrl($file);
+                $img->setCaption('Hello World helloo');
+                $cars->addImage($img);
             }
             $manager->persist($cars);
             $manager->flush();
