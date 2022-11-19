@@ -43,7 +43,7 @@
       {% endif %}
       <td>{{car.createdAt | format_datetime('full', 'short', locale='fr')}}</td>
       <td>{{car.author.FirstName}} {{car.author.LastName}}</td>
-      <td><a href="{{path('admin_car',{'slug': car.slug})}}" class="btn btn-warning mx-2">Modifier</a></td>
+      <td><a href="{{path('car_edit',{'slug': car.slug})}}" class="btn btn-warning mx-2">Modifier</a></td>
       <td><a href="{{path('car_delete',{'slug': car.slug})}}" class="btn btn-danger mx-2">Supprimer</a></td>
     </tr>
 {% endfor %}

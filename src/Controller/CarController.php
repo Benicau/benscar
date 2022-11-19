@@ -60,6 +60,14 @@ class CarController extends AbstractController
         ]);
     }
 
+
+
+
+
+
+
+
+
     /**
      * this function go to form new car in admin
      *
@@ -69,16 +77,12 @@ class CarController extends AbstractController
     #[Security("is_granted('ROLE_ADMIN')")]
     public function new(EntityManagerInterface $manager, Request $request) : Response
     {
-
-
         $cars = new Car();
         $form = $this->createForm(CarType::class, $cars);
         $form->handleRequest($request);
-        
-
         if($form->isSubmitted() && $form->isValid())
         {
-            // add author on new car
+           // add author on new car
             $cars->setAuthor($this->container->get('security.token_storage')->getToken()->getUser()); 
            // gestion de mon image
            $file = $form['coverImage']->getData();
@@ -106,10 +110,100 @@ class CarController extends AbstractController
                 "Votre voiture a bien été créé"
             );
 
+            return $this->redirectToRoute('admin_car');
         }
-
         return $this->render('pages/car/new.html.twig',['form'=>$form->createView()]);
     }
+
+
+
+
+
+
+
+
+
+
+
+    #[Route("/car/{slug}/edit", name:"car_edit", methods: ['GET','POST'])]
+   // #[Security("is_granted('ROLE_ADMIN')")]  
+    public function edit(EntityManagerInterface $manager, Request $request, Car $cars):Response 
+    {
+        $form = $this->createForm(CarType::class, $cars);
+        $form->handleRequest($request);
+        
+        if($form->isSubmitted() && $form->isValid())
+        { 
+            $file = $form['coverImage']->getData();
+            if(!empty($file))
+            {
+                $originalFilename = pathinfo($file->getClientOriginalName(),PATHINFO_FILENAME);
+                $safeFilename = transliterator_transliterate('Any-Latin;Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
+                $newFilename = $safeFilename."-".uniqid().".".$file->guessExtension();
+                try{
+                    $file->move(
+                        $this->getParameter('uploads_directory'),
+                        $newFilename
+                    );
+                }catch(FileException $e)
+                {
+                    return $e->getMessage();
+                }
+                $cars->setCoverImage($newFilename);
+            }
+            $manager->persist($cars);
+            $manager->flush();
+          
+
+
+            $this->addFlash('success', "La voiture {$cars->getId()} a bien été modifiée");
+
+            return $this->redirectToRoute('admin_car'); 
+            
+        }
+        else{
+           // dd($form);
+
+        }
+       
+
+        return $this->render("pages/car/edit.html.twig",[
+            "car" => $cars,
+            "form" => $form->createView()
+
+        ]);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -122,13 +216,13 @@ class CarController extends AbstractController
     public function delete(Car $car, EntityManagerInterface $manager)
     {
         $this->addFlash('success', "La voiture {$car->getId()} a bien été supprimée");
+       //supression de la cover image
+    //  unlink($this ->getParameter('uploads_directory').'/'.$car->getCoverImage());
         $manager->remove($car);
         $manager->flush();
 
         return $this->redirectToRoute('admin_car');
     }
-
-
 
 
 
@@ -158,7 +252,5 @@ class CarController extends AbstractController
             'car' => $car
         ]);
     }
-
-
 }
 

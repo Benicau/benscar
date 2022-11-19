@@ -1,0 +1,49 @@
+{% extends "base.html.twig" %}
+{% block title %}Modification de la voiture : {{car.marque}} {{car.modele}}{% endblock %}
+{% block stylesheets %}
+{{ parent() }}
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/css/datepicker-bs4.min.css">
+{% endblock %}
+
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+{% block body %}
+{% for message in app.flashes('success') %}
+            <div class="alert alert-success mt-2">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+    <div class="container">
+        <h1>Modification de la voiture : {{car.marque}} {{car.modele}}</h1>
+       
+            <div class="container">
+                <div>
+                    {{form_widget(form)}}
+                </div>
+                 {% if car.coverImage != "https://picsum.photos/350/180" %}
+                        <img src="/uploads/{{car.coverImage}}" class="starsimg">
+                    {% else %}
+                        <img src="{{car.coverImage}}" class="starsimg">
+                    {% endif %}
+        {{form_start(form)}}
+            </div>
+            
+            <button type="submit" class="btn btn-primary mt-3">Modifier voiture</button>
+        {{form_end(form)}}
+        
+       
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+<script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/js/datepicker.min.js"></script>
+<script>
+const miseEnCirculation = document.querySelector('#car_miseEnCirculation')
+
+const datePicker = new Datepicker(miseEnCirculation,{
+            format: 'dd/mm/yyyy',
+            maxDate: new Date()
+        })
+</script>{% endblock %}
