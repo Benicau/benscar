@@ -11,16 +11,94 @@
 {% form_theme form 'bootstrap_5_layout.html.twig' %}
 
 {% block body %}
-    <div class="container">
-        <h1>Création d'une nouvelle voiture</h1>
-        {{form_start(form)}}
-            <div class="container">
-                <div>
-                    {{form_widget(form)}}
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary mt-3">Ajout voiture</button>
-        {{form_end(form)}}
+    <div class="container new">
+        <h1 class="text-center m-3">Création d'une nouvelle voiture</h1>
+    {{form_start(form)}}
+
+    <div class="row  mt-3">
+        <div class="form-groupe col-6">
+            {{ form_label(form.marque) }}
+            {{ form_widget(form.marque) }}
+        </div>
+        <div class="form-groupe col-6">
+            {{ form_label(form.modele) }}
+            {{ form_widget(form.modele) }}
+        </div>
+    </div>
+    <div class="row  mt-3">
+        <div class="form-groupe col-6">
+            {{ form_label(form.prix) }}
+            {{ form_widget(form.prix) }}
+        </div>
+        <div class="form-groupe col-6">
+            {{ form_label(form.nbrpoprio) }}
+            {{ form_widget(form.nbrpoprio) }}
+        </div>
+    </div>
+    <div class="row  mt-3">
+        <div class="form-groupe col-6">
+            {{ form_label(form.kilometres) }}
+            {{ form_widget(form.kilometres) }}
+        </div>
+        <div class="form-groupe col-6">
+            {{ form_label(form.carburant) }}
+            {{ form_widget(form.carburant) }}
+        </div>
+    </div>
+    <div class="row  mt-3">
+        <div class="form-groupe col-6">
+            {{ form_label(form.transmition) }}
+            {{ form_widget(form.transmition) }}
+        </div>
+
+
+        <div class="form-groupe col-6">
+            {{ form_label(form.cylindree) }}
+            {{ form_widget(form.cylindree) }}
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="form-groupe col-6">
+            {{ form_label(form.puissance) }}
+            {{ form_widget(form.puissance) }}
+        </div>
+        <div class="form-groupe col-6">
+            {{ form_label(form.miseEnCirculation) }}
+            {{ form_widget(form.miseEnCirculation) }}
+        </div>
+    </div>
+    <div class="row  mt-3">
+        <div class="form-groupe col-6">
+            {{ form_label(form.description) }}
+            {{ form_widget(form.description) }}
+        </div>
+        <div class="form-groupe col-6">
+            {{ form_label(form.optioncar) }}
+            {{ form_widget(form.optioncar) }}
+        </div>
+    </div>
+    <div class="row  mt-3">
+        <div class="form-groupe col-12">
+            {{ form_label(form.coverImage) }}
+            {{ form_widget(form.coverImage) }}
+        </div>
+    </div>
+    <div class="row  mt-3">
+        <div class="form-groupe col-12">
+            {{ form_label(form.images) }}
+            {{ form_widget(form.images) }}
+        </div>
+    </div>
+    <div class="row">
+    <div class="col-12 text-center">
+     <button type="submit" class="btn btn-primary mt-3">Ajout voiture</button>
+    {{form_end(form)}}
+    </div>
+    </div>
+   
+</div>
+       
     </div>
 {% endblock %}
 

@@ -273,10 +273,10 @@ class CarController extends AbstractController
     #[Route('/car/{slug}', name:'cars_show')]
     public function show(string $slug, Car $car):Response
     {
-        dump($car);
+      
 
         return $this->render('pages/car/show.html.twig',[
-            'car' => $car
+            'car' => $car,
         ]);
     }
 }

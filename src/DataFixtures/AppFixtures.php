@@ -80,7 +80,7 @@ class AppFixtures extends Fixture
                 ->setDescription($description)
                 ->setOptioncar($option)
                 ->setMiseEnCirculation($misecirculation)   
-                ->setCoverImage('https://picsum.photos/350/180')   
+                ->setCoverImage('https://api.lorem.space/image/car?w=1920&h=1080')   
                 ->setAuthor($user)          
                 ;
 
@@ -91,7 +91,7 @@ class AppFixtures extends Fixture
            for($j=1; $j<= rand(2,5); $j++)
             {
                 $image = new Image();
-                $image->setUrl('https://picsum.photos/450/250')
+                $image->setUrl('https://api.lorem.space/image/car?w=1920&h=1080')
                 ->setCaption($faker->sentence())
                 ->setCar($car);
                 $manager->persist($image);    

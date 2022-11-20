@@ -36,7 +36,7 @@
       <td>{{car.marque}}</td>
       <td>{{car.modele}}</td>
       <td>{{car.prix}} €</td>
-      {% if car.coverImage != "https://picsum.photos/350/180" %}
+      {% if car.coverImage != "https://api.lorem.space/image/car?w=1920&h=1080" %}
       <td><img src="/uploads/{{car.coverImage}}" alt="{{car.marque}} {{car.modele}}"></td>
       {% else %}
       <td><img src="{{car.coverImage}}" alt="{{car.marque}} {{car.modele}}"></td>

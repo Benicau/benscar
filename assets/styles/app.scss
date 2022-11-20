@@ -20,9 +20,8 @@ body {
     width: 100%;
     background-color: #06283D;
     color: white;
-    text-align: center;
     font-size: 19px;
-    height: 47px;
+    height: 51px;
     line-height: 47px;
 }
 
@@ -225,19 +224,55 @@ td{
 }
 
 textarea{
-    height: 120px;
+    height: 220px;
     resize: none;
 }
 
 //page car
 .carSeul{
+    background-size: cover;
+    background-attachment: fixed;
+    .pattern
+    {
+        width: 100%;
+        height: 100%;
+        background-image: url(https://benoit-caucheteux.com/porfolioDev/images/pattern.png);
+        opacity: 1;
+    }
+    .blanc{
+        background-color: rgba(256, 256, 256, .55);
+    
+    }
+    .info{
+        display: flex;
+        justify-content: center;
+    }
+    .group{
+        background-color: rgba(6, 40, 61, 0.85);
+        padding-top: 30px;
+        width: 320px;
+        margin: 25px;
+        border-radius: 25px;
+        p{
+            color: #F66B0E;
+            font-size: 24px;
+        }
+        &:hover{
+            background-color: #06283D;
+        }
+      
+    }
+
     h3{
         color: #F66B0E;
         background-color: transparent;
         text-decoration: underline;
+        font-weight: bold;
+        font-size: 30px;
+        padding-bottom: 25px;
     }
     h4{
-        color: #06283D;
+        color: white;
         font-size: 22px;
         font-weight: bold;
         margin-top: 18px;
@@ -248,9 +283,16 @@ textarea{
         margin-top: 22px;
         color: #F66B0E;
         font-size: 60px;
+        background-color: white;
+        height: 100px;
+        width: 100px;
+        margin: auto;
+        padding-top: 20px;
+        border-radius: 50px;
     }
     p{
         line-height: 20px;
+        color: #06283D;
     }
    h2{
     font-size: 35px;
@@ -262,17 +304,71 @@ textarea{
         font-size: 25px;
     }
    }
+   .flexprix{
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+   }
    .prix{
-    color: #F66B0E;
+    width: 200px;
+    height: 100px;
+    border-radius: 25px;
+    background-color: rgba(6, 40, 61, 0.85);
+    text-align: center;
+    strong{
+         color:#F66B0E;
+         font-weight: bold;
     font-size: 45px;
-    text-align: end;
+    line-height: 100px;
+    }
+
+    
+   }
+   .content{
+    background-color: rgba(256, 256, 256, .85);
+    border-radius: 20px;
+    margin-bottom: 35px;
+   
    }
 }
-.formImage
+.formImage, .gallerieImg
 {
-    width: 220px;
+   
+    display: flex;
+    
+   
     img{
-        width: 100%;
+        width: 220px;
         height: auto;
+        margin: 10px;
+      
+    }
+  
+}
+.edit, .new{
+    label{
+        color:#06283D;
+        font-weight: bold;
+        margin: auto;
+    }
+    button{
+        width: 350px;
+        
+        
+    }
+    h1{
+        font-size: 25px;
+        text-decoration: underline;
+        
+        span{
+            color: red;
+            font-size: 35px;
+        }
+    }
+}
+.footer{
+    p{
+        color: white;
+        line-height: 50px;
     }
 }
