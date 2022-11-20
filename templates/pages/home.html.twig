@@ -4,56 +4,64 @@
 
 {% block body %}
 <div class="home">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h1 class='text-center'>Bienvenue chez Ben's Car</h1>
-            </div>
-            <div class="col-12">
-                <h2 class='text-center'>Large choix de voitures d'occasion garanties | Livraison à domicile | Retour
-                    sans
-                    frais sous 21 jours</h2>
-                    <p class="text-center">Chez Ben's Car pas de lézard, toujours les meilleurs voitures d'occasion à des
-                    prix
-                    défiant toute concurrence.</br>Controle technique en ordre, entretien de tous nos vehicules avant la
-                    vente et Pass car garantie sur tout nos véhicules.</p>
-            </div>
-            <div class="text-center linkHome">
-            <a class="text-center mt-3" href="{{ path('app_car') }}">Toutes nos voitures en
-                        stock</a>
-                
+    <div class="pattern">
+
+        <div class="container">
+            <div class="row">
+                <div class="jumbotron" data-aos="fade-down">
+                    <div class="col-12">
+                        <h1 class='text-center'>Bienvenue chez Ben's Car</h1>
+                    </div>
+                    <div class="col-12">
+                        <h2 class='text-center'>Large choix de voitures d'occasion garanties | Livraison à domicile |
+                            Retour
+                            sans
+                            frais sous 21 jours</h2>
+                        <p class="text-center">Chez Ben's Car pas de lézard, toujours les meilleurs voitures d'occasion
+                            à des
+                            prix
+                            défiant toute concurrence.</br>Controle technique en ordre, entretien de tous nos vehicules
+                            avant la
+                            vente et Pass car garantie sur tout nos véhicules.</p>
+                    </div>
+                    <div class="text-center linkHome">
+                        <a class="text-center mt-3" href="{{ path('app_car') }}">Toutes nos voitures en
+                            stock</a>
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-12">
                     <h3>Nos dernières trouvailles</h3>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            {% for car in cars %}
-            {% set url = path('cars_show', {'slug':car.slug}) %}
-            <div class="col-lg-4 col-md-12">
-                <div class="itemCar my-4">
-                    <div class="image text-center">
-                    {% if car.coverImage != "https://api.lorem.space/image/car?w=1920&h=1080" %}
-                        <img src="/uploads/{{car.coverImage}}" class="starsimg">
-                    {% else %}
-                        <img src="{{car.coverImage}}" class="starsimg">
-                    {% endif %}
-                    </div>
-                    <div class="content mx-3">
-                        <div class="nameCar">
-                            <p>{{car.marque|upper}} {{car.modele}}<span>{{car.prix}} €</span></p>
+
+            <div class="row">
+                {% for car in cars %}
+                {% set url = path('cars_show', {'slug':car.slug}) %}
+                <div class="col-lg-4 col-md-12">
+                    <div class="itemCar my-4" data-aos="zoom-in">
+                        <div class="image text-center">
+                            {% if car.coverImage != "https://api.lorem.space/image/car?w=1920&h=1080" %}
+                            <img src="/uploads/{{car.coverImage}}" class="starsimg">
+                            {% else %}
+                            <img src="{{car.coverImage}}" class="starsimg">
+                            {% endif %}
                         </div>
-                        <p>{{car.cylindree}}</p>
-                        <p class="text-center">{{car.MiseEnCirculation|date("Y")}} | {{car.carburant}} |
-                            {{car.kilometres}} km</p>
-                        <p class="text-center">{{car.transmition}}</p>
+                        <div class="content mx-3">
+                            <div class="nameCar">
+                                <p>{{car.marque|capitalize}} {{car.modele|capitalize}}<span>{{car.prix}} €</span></p>
+                            </div>
+                            <p>{{car.cylindree}}</p>
+                            <p class="text-center">{{car.MiseEnCirculation|date("Y")}} | {{car.carburant}} |
+                                {{car.kilometres}} km</p>
+                            <p class="text-center">{{car.transmition}}</p>
+                        </div>
+                        <a href="{{url}}">Voir cette voiture</a>
                     </div>
-                    <a href="{{url}}">Voir cette voiture</a>
                 </div>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
     </div>
 </div>

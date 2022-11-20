@@ -4,8 +4,11 @@
 
 {% block body %}
 <div class="carPage">
+<div class="pattern">
     <div class="container">
-        <h1 class="mt-5">Toutes nos voitures en stock</h1>
+     <div class="titre">
+        <h1>Toutes nos voitures en stock</h1>
+        </div>
         <div class="count">
             {% if not cars.items is same as ([]) %}
             <em>Il y a {{ cars.getTotalItemCount }} voitures à vendre</em>
@@ -14,7 +17,7 @@
             {% for car in cars %}
               {% set url = path('cars_show', {'slug':car.slug}) %}
             <div class="col-lg-4 col-md-12">
-                <div class="itemCar my-4">
+                <div class="itemCar my-4" data-aos="zoom-in">
                     <div class="image text-center">
                         {% if car.coverImage != "https://api.lorem.space/image/car?w=1920&h=1080" %}
                         <img src="/uploads/{{car.coverImage}}" class="starsimg">
@@ -24,7 +27,7 @@
                     </div>
                     <div class="content mx-3">
                         <div class="nameCar">
-                            <p>{{car.marque|upper}} {{car.modele}}<span>{{car.prix}} €</span></p>
+                            <p>{{car.marque|capitalize}} {{car.modele|capitalize}}<span>{{car.prix}} €</span></p>
                         </div>
                         <p>{{car.cylindree}}</p>
                         <p class="text-center">{{car.MiseEnCirculation|date("Y")}} | {{car.carburant}} |
@@ -43,5 +46,6 @@
         <em>Il y a pas de voiture à vendre</em>
         {% endif %}
     </div>
+</div>
 </div>
 {% endblock %}
