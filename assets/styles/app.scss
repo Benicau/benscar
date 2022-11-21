@@ -486,3 +486,56 @@ textarea {
         text-decoration: underline;
     }
 }
+.datepicker-grid{
+    .day{
+        font-weight: bold; 
+        color: green;
+    }
+}
+.view-switch{
+    background-color: #06283D;
+    color: white;
+}
+
+.prev-btn, .next-btn{
+    background-color: green;
+    &:disabled{
+        background-color: red;
+        color: black;
+    }
+}
+
+
+
+.gallerieImg
+{
+   
+    width: 200px;
+    .blockImage{
+        width: 200px;
+        margin-right: 50px;
+
+      
+        
+    
+  .link{
+    
+    a{
+        width: 120px;
+        text-decoration: none;
+        color: white;
+        background-color:#F66B0E; 
+        font-size: 19px;
+        border-radius: 5px;
+        display: block;
+        height: 30px;
+        margin-left: 10px;
+        
+
+    }
+  }
+ 
+    
+}
+
+}

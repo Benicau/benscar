@@ -12,6 +12,7 @@ use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -58,6 +59,29 @@ class CarController extends AbstractController
         return $this->render('pages/admin/index.html.twig', [
             'cars'=>$cars     
         ]);
+    }
+
+
+
+    #[Route('deleteImage/{id}', name: 'image_delete', methods: ['GET','POST'])]
+    #[Security("is_granted('ROLE_ADMIN')")]
+    public function ImageDelete(Image $image, EntityManagerInterface $manager, Request $request){
+
+        $this->addFlash('success', "L'image {$image->getId()} a bien été supprimée");
+       //supression de la cover image
+       $url = $image->geturl();
+       if($url != 'https://api.lorem.space/image/car?w=1920&h=1080')
+        {
+            unlink($this ->getParameter('uploads_directory').'/'.$image->getUrl());
+        } 
+        $manager->remove($image);
+        $manager->flush();
+        $referer = $request->headers->get('referer');
+            return new RedirectResponse($referer);
+
+
+
+
     }
 
     /**

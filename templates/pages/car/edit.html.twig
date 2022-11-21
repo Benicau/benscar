@@ -9,12 +9,13 @@
 {% form_theme form 'bootstrap_5_layout.html.twig' %}
 
 {% block body %}
+
+<div class="container edit">
 {% for message in app.flashes('success') %}
 <div class="alert alert-success mt-2">
     {{ message }}
 </div>
 {% endfor %}
-<div class="container edit">
     <h1 class="text-center m-3">Modification de la voiture : <span>{{car.marque}} {{car.modele}}</span></h1>
     {{form_start(form)}}
 
@@ -115,12 +116,21 @@
             {{ form_errors(form.images) }}
             <div class="gallerieImg">
                 {% for image in car.images %}
+                <div class="blockImage">
                 {% if image.url != "https://api.lorem.space/image/car?w=1920&h=1080" %}
                 <img src="{{ asset('/uploads/'~image.url) }}" alt="image de {{car.marque}}" class="d-block">
                 {% else %}
                 <img src="{{image.url}}" class="d-block" alt="image de {{car.marque}}">
                 {% endif %}
+                <div class="link ">
+                <a href="{{path('image_delete',{'id': image.id})}}" class="text-center">Supprimer</a>
+                </div>
+                
+                </div>
                 {% endfor %}
+                
+                
+                
             </div>
         </div>
     </div>
