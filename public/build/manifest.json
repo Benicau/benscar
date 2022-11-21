@@ -1,0 +1,8 @@
+{
+  "build/app.css": "http://localhost:8080/build/app.css",
+  "build/app.js": "http://localhost:8080/build/app.js",
+  "build/runtime.js": "http://localhost:8080/build/runtime.js",
+  "build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_er-359716.js": "http://localhost:8080/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_er-359716.js",
+  "build/images/fond2.jpg": "http://localhost:8080/build/images/fond2.87b9d79d.jpg",
+  "build/images/fond1.jpg": "http://localhost:8080/build/images/fond1.a3973abf.jpg"
+}
