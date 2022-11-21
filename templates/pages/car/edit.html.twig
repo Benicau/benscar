@@ -18,47 +18,54 @@
     <h1 class="text-center m-3">Modification de la voiture : <span>{{car.marque}} {{car.modele}}</span></h1>
     {{form_start(form)}}
 
-    <div class="row  mt-3">
+ <div class="row  mt-3">
         <div class="form-groupe col-6">
             {{ form_label(form.marque) }}
             {{ form_widget(form.marque) }}
-            
+            {{ form_errors(form.marque) }}
         </div>
         <div class="form-groupe col-6">
             {{ form_label(form.modele) }}
             {{ form_widget(form.modele) }}
+            {{ form_errors(form.modele) }}
         </div>
     </div>
     <div class="row  mt-3">
         <div class="form-groupe col-6">
             {{ form_label(form.prix) }}
             {{ form_widget(form.prix) }}
+            {{ form_errors(form.prix) }}
         </div>
         <div class="form-groupe col-6">
             {{ form_label(form.nbrpoprio) }}
             {{ form_widget(form.nbrpoprio) }}
+            {{ form_errors(form.nbrpoprio) }}
         </div>
     </div>
     <div class="row  mt-3">
         <div class="form-groupe col-6">
             {{ form_label(form.kilometres) }}
             {{ form_widget(form.kilometres) }}
+             {{ form_errors(form.kilometres) }}
         </div>
         <div class="form-groupe col-6">
             {{ form_label(form.carburant) }}
             {{ form_widget(form.carburant) }}
+             {{ form_errors(form.carburant) }}
         </div>
     </div>
     <div class="row  mt-3">
         <div class="form-groupe col-6">
             {{ form_label(form.transmition) }}
             {{ form_widget(form.transmition) }}
+             {{ form_errors(form.transmition) }}
         </div>
 
 
         <div class="form-groupe col-6">
             {{ form_label(form.cylindree) }}
             {{ form_widget(form.cylindree) }}
+             {{ form_errors(form.cylindree) }}
         </div>
     </div>
 
@@ -66,26 +73,32 @@
         <div class="form-groupe col-6">
             {{ form_label(form.puissance) }}
             {{ form_widget(form.puissance) }}
+             {{ form_errors(form.puissance) }}
         </div>
         <div class="form-groupe col-6">
             {{ form_label(form.miseEnCirculation) }}
             {{ form_widget(form.miseEnCirculation) }}
+             {{ form_errors(form.miseEnCirculation) }}
         </div>
     </div>
     <div class="row  mt-3">
         <div class="form-groupe col-6">
             {{ form_label(form.description) }}
             {{ form_widget(form.description) }}
+             {{ form_errors(form.description) }}
         </div>
         <div class="form-groupe col-6">
             {{ form_label(form.optioncar) }}
             {{ form_widget(form.optioncar) }}
+             {{ form_errors(form.optioncar) }}
         </div>
     </div>
     <div class="row  mt-3">
         <div class="form-groupe col-12">
             {{ form_label(form.coverImage) }}
             {{ form_widget(form.coverImage) }}
+            {{ form_errors(form.coverImage) }}
+         
             <div class="formImage">
                 {% if car.coverImage != "https://api.lorem.space/image/car?w=1920&h=1080" %}
                 <img src="/uploads/{{car.coverImage}}" class="starsimg">
@@ -98,7 +111,8 @@
     <div class="row  mt-3">
         <div class="form-groupe col-12">
             {{ form_label(form.images) }}
-            {{ form_widget(form.images) }}
+            {{ form_widget(form.images) }}   
+            {{ form_errors(form.images) }}
             <div class="gallerieImg">
                 {% for image in car.images %}
                 {% if image.url != "https://api.lorem.space/image/car?w=1920&h=1080" %}

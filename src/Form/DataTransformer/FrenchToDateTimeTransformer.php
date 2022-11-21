@@ -17,6 +17,12 @@ class FrenchToDateTimeTransformer implements DataTransformerInterface
         return $date->format('d/m/Y');
     }
 
+    /**
+     * transform date type en string
+     *
+     * @param [type] $frenchDate
+     * @return void
+     */
     public function reverseTransform($frenchDate)
     {
         if($frenchDate === null){

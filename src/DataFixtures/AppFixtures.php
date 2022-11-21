@@ -21,21 +21,21 @@ class AppFixtures extends Fixture
         $this->passwordHasher = $passwordHasher;
     }
 
-   
+   /**
+    * faker cretion user in admin, car and images
+    *
+    * @param ObjectManager $manager
+    * @return void
+    */
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create('fr_FR');
-
-
          // gestion des utilisateurs
          $users = []; // init un tableau pour récup les user pour les Cars
-        
-
         //users
         for ($i=0; $i<10; $i++) { 
             $user = new User();
             $hash = $this->passwordHasher->hashPassword($user,'password');
-
             $user->setFirstName($faker->firstName())
                 ->setLastName($faker->lastName())
                 ->setEmail($faker->email())
@@ -47,9 +47,6 @@ class AppFixtures extends Fixture
             $manager->persist($user);
             $users[] = $user;    
         }
-
-
-
         for($i = 1; $i <= 30; $i++)
         {
             $car = new Car();
@@ -60,14 +57,8 @@ class AppFixtures extends Fixture
             $transmissionTab = ['Manuelle','Automatique'];
             $transmission = $transmissionTab[rand(0,1)];
             $misecirculation = $faker->dateTimeThisDecade();
-
              // liaison avec user
              $user = $users[rand(0, count($users)-1)];
-            
-            
-
-            
-
             $car->setMarque($faker->word())
             ->setModele($faker->word())
                 ->setPrix(rand(5000,40000))
@@ -83,10 +74,7 @@ class AppFixtures extends Fixture
                 ->setCoverImage('https://api.lorem.space/image/car?w=1920&h=1080')   
                 ->setAuthor($user)          
                 ;
-
             $manager->persist($car);
-
-            
             // gestion de l'image de l'annonce
            for($j=1; $j<= rand(2,5); $j++)
             {

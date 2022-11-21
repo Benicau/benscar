@@ -33,6 +33,7 @@ body {
         color: #47B5FF;
         font-size: 32px;
         font-weight: bold;
+        line-height: 76px;
     }
 
     ul {
@@ -47,12 +48,13 @@ body {
                 color: white;
                 line-height: 76px;
             }
-           &:hover{
-            a{
-                color: #F66B0E;
-            } 
-        }
-        
+
+            &:hover {
+                a {
+                    color: #F66B0E;
+                }
+            }
+
         }
     }
 
@@ -86,9 +88,7 @@ body {
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
-  
- 
-    
+
     h1 {
         margin-top: 10px;
         color: #06283D;
@@ -104,11 +104,10 @@ h2 {
     font-weight: bold;
 }
 
-
 .linkHome {
-   display: flex;
-   justify-content: center;
-   
+    display: flex;
+    justify-content: center;
+
     a {
         padding: 10px;
         width: 100%;
@@ -139,48 +138,68 @@ h3 {
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
-    .titre{
+
+    .titre {
         padding-top: 50px;
+
         h1 {
-        background-color: #F66B0E;
-        color: white;
-        font-size: 20px;
-        text-decoration: none;
-        width: 450px;
-        line-height: 45px;
-        text-align: center;
-        border-radius: 10px;
-        
+            background-color: #F66B0E;
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+            width: 450px;
+            line-height: 45px;
+            text-align: center;
+            border-radius: 10px;
+
+        }
     }
-    }
-    
 }
-.jumbotron{
+
+.jumbotron {
     background-color: rgba(256, 256, 256, .95);
     margin-top: 20px;
     border-radius: 20px;
     padding-bottom: 25px;
     border: 2px solid #06283D;
-    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.23);
-    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.23);
-    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.23);
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.23);
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.23);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.23);
+}
+.count
+{
+    em{
+        color: white;
+        font-size: 20px;
+    }
 }
 
 //css connexion
-.connexion, .admin{
+.connexion,
+.admin {
     min-height: 88vh;
+
+    h1 {
+        font-size: 25px;
+        text-align: center;
+        padding: 15px;
+        color: red;
+        text-decoration: underline;
+
+    }
 }
 
 //css item car
 .carPage,
 .home {
-    .pattern
-    {
+    min-height: 95vh;
+    .pattern {
         width: 100%;
         height: 100%;
         background-image: url(https://benoit-caucheteux.com/porfolioDev/images/pattern.png);
         opacity: 1;
     }
+
     .active {
         .page-link {
             background-color: #06283D;
@@ -202,43 +221,40 @@ h3 {
         border-radius: 20px;
         overflow: hidden;
         opacity: 0.98;
-        
-       
-        box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.23);
-        -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.23);
-        -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.23);
-        
-        
-        &:hover
-        {
-           
+        box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.23);
+        -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.23);
+        -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.23);
+
+        &:hover {
+
             opacity: 1;
-            .image{
-                img{
-                -webkit-filter: grayscale(0%); /* Chrome, Safari, Opera */
-        filter: grayscale(0%); /* Firefox */ 
 
-        
+            .image {
+                img {
+                    -webkit-filter: grayscale(0%);
+                    /* Chrome, Safari, Opera */
+                    filter: grayscale(0%);
+                    /* Firefox */
 
+                }
             }
-            }
-            
         }
-       
 
-        .image{
+        .image {
             width: 100%;
             height: 200px;
-         img {
-            width: 100%;
-            height: 100%;
-            -webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */
-filter: grayscale(100%); /* Firefox */ }
-transition-delay: 5sec;
 
+            img {
+                width: 100%;
+                height: 100%;
+                -webkit-filter: grayscale(100%);
+                /* Chrome, Safari, Opera */
+                filter: grayscale(100%);
+                /* Firefox */
+            }
+
+            transition-delay: 5sec;
         }
-
-       
 
         a {
             background-color: #F66B0E;
@@ -279,69 +295,77 @@ transition-delay: 5sec;
     user-select: none;
 }
 
-
 //css admin
-tr{
-td{
-    img{
-        height: 30px;
-        width: auto;
+tr {
+    td {
+        img {
+            height: 30px;
+            width: auto;
+        }
+    }
+
+    &:hover {
+        background-color: antiquewhite;
     }
 }
-&:hover{
-    background-color: antiquewhite;
-}
-}
 
-textarea{
+textarea {
     height: 220px;
     resize: none;
 }
 
 //page car
-.carSeul{
+.carSeul {
     background-size: cover;
     background-attachment: fixed;
-    .pattern
-    {
+
+    .pattern {
         width: 100%;
         height: 100%;
         background-image: url(https://benoit-caucheteux.com/porfolioDev/images/pattern.png);
         opacity: 1;
     }
-    .blanc{
+
+    .blanc {
         background-color: rgba(256, 256, 256, .55);
-    
+
     }
-    .info{
+
+    .info {
         display: flex;
         justify-content: center;
     }
-    .group{
+
+    .group {
         background-color: rgba(6, 40, 61, 0.85);
         padding-top: 30px;
         width: 320px;
         margin: 25px;
         border-radius: 25px;
-        p{
+
+        p {
             color: #F66B0E;
             font-size: 24px;
         }
-        &:hover{
+
+        &:hover {
             background-color: #06283D;
         }
-      
+
     }
 
-    h3{
+    h3 {
         color: #F66B0E;
         background-color: transparent;
         text-decoration: underline;
         font-weight: bold;
         font-size: 30px;
         padding-bottom: 25px;
+        text-align: center;
+        width: 100%;
     }
-    h4{
+
+    h4 {
         color: white;
         font-size: 22px;
         font-weight: bold;
@@ -349,7 +373,8 @@ textarea{
         height: 50px;
         vertical-align: auto;
     }
-    i{ 
+
+    i {
         margin-top: 22px;
         color: #F66B0E;
         font-size: 60px;
@@ -360,85 +385,104 @@ textarea{
         padding-top: 20px;
         border-radius: 50px;
     }
-    p{
+
+    p {
         line-height: 20px;
         color: #06283D;
     }
-   h2{
-    font-size: 35px;
-    color: #06283D;
-    line-height: 35px;
-   }
-   .titre{
-    p{
-        font-size: 25px;
-    }
-   }
-   .flexprix{
-    display: flex;
-    justify-content: center;
-    margin-top: 15px;
-   }
-   .prix{
-    width: 200px;
-    height: 100px;
-    border-radius: 25px;
-    background-color: rgba(6, 40, 61, 0.85);
-    text-align: center;
-    strong{
-         color:#F66B0E;
-         font-weight: bold;
-    font-size: 45px;
-    line-height: 100px;
+
+    h2 {
+        font-size: 35px;
+        color: #06283D;
+        line-height: 35px;
     }
 
-    
-   }
-   .content{
-    background-color: rgba(256, 256, 256, .85);
-    border-radius: 20px;
-    margin-bottom: 35px;
-   
-   }
+    .titre {
+        p {
+            font-size: 25px;
+        }
+    }
+
+    .flexprix {
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+    }
+
+    .prix {
+        width: 200px;
+        height: 100px;
+        border-radius: 25px;
+        background-color: rgba(6, 40, 61, 0.85);
+        text-align: center;
+
+        strong {
+            color: #F66B0E;
+            font-weight: bold;
+            font-size: 45px;
+            line-height: 100px;
+        }
+    }
+
+    .content {
+        background-color: rgba(256, 256, 256, .85);
+        border-radius: 20px;
+        margin-bottom: 35px;
+
+    }
 }
-.formImage, .gallerieImg
-{
-   
+
+.formImage,
+.gallerieImg {
+
     display: flex;
-    
-   
-    img{
+
+    img {
         width: 220px;
         height: auto;
         margin: 10px;
-      
     }
-  
 }
-.edit, .new{
-    label{
-        color:#06283D;
+
+.edit,
+.new {
+    label {
+        color: #06283D;
         font-weight: bold;
         margin: auto;
     }
-    button{
+
+    button {
         width: 350px;
-        
-        
+        margin-bottom: 50px;
+
+
     }
-    h1{
+
+    h1 {
         font-size: 25px;
         text-decoration: underline;
-        
-        span{
+
+        span {
             color: red;
             font-size: 35px;
         }
     }
 }
-.footer{
-    p{
+
+.footer {
+    p {
         color: white;
         line-height: 50px;
+    }
+}
+
+.connexion {
+    h1 {
+        font-size: 25px;
+        text-align: center;
+        padding: 20px;
+        color: red;
+        text-decoration: underline;
     }
 }

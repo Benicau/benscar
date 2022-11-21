@@ -10,6 +10,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
+    /**
+     * home page
+     *
+     * @param CarRepository $repository
+     * @param Request $request
+     * @return Response
+     */
     #[Route('/', name: 'homepage', methods: ['GET'])]
     public function index(CarRepository $repository, Request $request): Response
     {

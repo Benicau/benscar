@@ -16,18 +16,24 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class CarType extends ApplicationType
 {
-
-    
-
         private $transformer;
-
-
+        /**
+         * Function who transform date in string value
+         *
+         * @param FrenchToDateTimeTransformer $transformer
+         */
         public function __construct(FrenchToDateTimeTransformer $transformer)
             {
         $this->transformer = $transformer;
              }
 
-
+    /**
+     * Form add and update for car
+     *
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
 

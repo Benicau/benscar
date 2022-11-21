@@ -39,7 +39,6 @@ class CarController extends AbstractController
         ]);
     }
 
-
     /**
      * this function display all car in administration
      *
@@ -60,14 +59,6 @@ class CarController extends AbstractController
             'cars'=>$cars     
         ]);
     }
-
-
-
-
-
-
-
-
 
     /**
      * this function go to form new car in admin
@@ -113,7 +104,7 @@ class CarController extends AbstractController
 
                 $img = new Image();
                 $img->setUrl($file);
-                $img->setCaption('Hello World helloo');
+                $img->setCaption('');
                 $cars->addImage($img);
             }
            $manager->persist($cars);
@@ -133,14 +124,14 @@ class CarController extends AbstractController
 
 
 
-
-
-
-
-
-
+   
+   /**
+     * this function go to form edit car in admin
+     *
+     * @return Response
+     */
     #[Route("/car/{slug}/edit", name:"car_edit", methods: ['GET','POST'])]
-   // #[Security("is_granted('ROLE_ADMIN')")]  
+    #[Security("is_granted('ROLE_ADMIN')")]  
     public function edit(EntityManagerInterface $manager, Request $request, Car $cars):Response 
     {
         $form = $this->createForm(CarType::class, $cars);
@@ -175,65 +166,20 @@ class CarController extends AbstractController
 
                 $img = new Image();
                 $img->setUrl($file);
-                $img->setCaption('Hello World helloo');
+                $img->setCaption('');
                 $cars->addImage($img);
             }
             $manager->persist($cars);
             $manager->flush();
-          
-
-
             $this->addFlash('success', "La voiture {$cars->getId()} a bien été modifiée");
-
-            return $this->redirectToRoute('admin_car'); 
-            
+            return $this->redirectToRoute('admin_car');    
         }
-        else{
-           // dd($form);
-
-        }
-       
-
         return $this->render("pages/car/edit.html.twig",[
             "car" => $cars,
             "form" => $form->createView()
 
         ]);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
  /**
   * this function delete car in admin panel
@@ -244,28 +190,15 @@ class CarController extends AbstractController
     {
         $this->addFlash('success', "La voiture {$car->getId()} a bien été supprimée");
        //supression de la cover image
-    //  unlink($this ->getParameter('uploads_directory').'/'.$car->getCoverImage());
+       $url = $car->getCoverImage();
+       if($url != 'https://api.lorem.space/image/car?w=1920&h=1080')
+        {
+            unlink($this ->getParameter('uploads_directory').'/'.$car->getCoverImage());
+        } 
         $manager->remove($car);
         $manager->flush();
-
         return $this->redirectToRoute('admin_car');
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     /**
      * Permet d'afficher une annonce via son slug
@@ -273,8 +206,6 @@ class CarController extends AbstractController
     #[Route('/car/{slug}', name:'cars_show')]
     public function show(string $slug, Car $car):Response
     {
-      
-
         return $this->render('pages/car/show.html.twig',[
             'car' => $car,
         ]);

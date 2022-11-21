@@ -9,6 +9,12 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
+    /**
+     * login connection
+     *
+     * @param AuthenticationUtils $AuthenticationUtils
+     * @return Response
+     */
     #[Route('/connexion', name: 'security.login', methods:['GET','POST'])]
     public function login(AuthenticationUtils $AuthenticationUtils): Response
     {
@@ -16,6 +22,7 @@ class SecurityController extends AbstractController
             'last_username' => $AuthenticationUtils->getLastUsername(),
             'error' => $AuthenticationUtils->getLastAuthenticationError()
         ]);
+        return $this->redirectToRoute('admin_car');
     }
 
     #[Route('/deconnexion', 'security.logout')]

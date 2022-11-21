@@ -62,10 +62,11 @@ class Car
    
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Assert\Length(min: 100, minMessage: "La description doit faire plus de 100 caractères")]
+    #[Assert\Length(min: 50, minMessage: "La description doit faire plus de 100 caractères")]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Assert\Length(min: 50, minMessage: "Les option doit faire plus de 50 caractères")]
     private ?string $optioncar = null;
 
     #[ORM\Column(length: 255)]
